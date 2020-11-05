@@ -1,0 +1,12 @@
+Source: warm-pal
+Section: devel
+Priority: extra
+Maintainer: shirong <shirong@linux.alibaba.com>
+Build-Depends: debhelper (>=9)
+Standards-Version: 3.9.8
+Homepage: https://github.com/alibaba/inclavare-containers
+
+Package: warm-pal
+Architecture: amd64
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: warm-pal is xx 

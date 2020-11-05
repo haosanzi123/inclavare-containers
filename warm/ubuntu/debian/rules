@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+BUILD_ROOT := $(CURDIR)/debian/warm-pal
+BUILD_DIR := /usr/lib
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	cd product-mini/platforms/linux-sgx/ && mkdir build && cd build && cmake .. && make && cd ../enclave-sample/ && make && /opt/intel/sgxsdk/bin/x64/sgx_sign sign -key Enclave/Enclave_private.pem -enclave enclave.so -out enclave.signed.so -config Enclave/Enclave.config.xml && g++ -shared -fPIC -o libwamr-pal.so App/*.o libvmlib_untrusted.a -L/opt/intel/sgxsdk/lib64 -lsgx_urts -lpthread -lssl -lcrypto
+override_dh_auto_install:
+	install -d -p $(BUILD_ROOT)$(BUILD_DIR)
+	install -p -m 755 $(CURDIR)/product-mini/platforms/linux-sgx/enclave-sample/libwamr-pal.so $(BUILD_ROOT)$(BUILD_DIR)
+override_dh_usrlocal:
