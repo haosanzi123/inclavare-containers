@@ -841,17 +841,11 @@ int __pal_kill(int pid, int sig)
 
 int __pal_destroy(void)
 {
-	FILE *fp = fdopen(pal_stdio.stderr, "w");
-	if (!fp)
-		return -1;
-
 	if (!initialized) {
-		fprintf(fp, "Enclave runtime skeleton uninitialized yet!\n");
-		fclose(fp);
+		fprintf(stderr,
+			"Enclave runtime skeleton uninitialized yet!\n");
 		return -1;
 	}
-
-	fclose(fp);
 
 	if (backend_kvm)
 		return libvmm_vm_exit(kvm_vm);
