@@ -3,7 +3,7 @@ name: Run rune with docker and crictl test
 # Controls when the action will run. Triggers the workflow on pull request labeled start-testing.
 on:
   pull_request:
-    types: [labeled]
+    types: labeled
 
 jobs:
   # TODO: add rune circtl test on ubuntu image.
