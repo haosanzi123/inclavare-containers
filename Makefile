@@ -4,6 +4,10 @@ export INCLAVARE_CONTAINERS_VERSION := $(shell cat ./VERSION)
 components := rune shim epm sgx-tools
 
 all:
+
+
+
+
 	for name in $(components); do \
 		$(MAKE) -C $$name; \
 	done
