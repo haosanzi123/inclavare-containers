@@ -9,6 +9,9 @@ all:
 	done
 
 install:
+
+
+
 	for name in $(components); do \
 		$(MAKE) -C $$name install; \
 	done
