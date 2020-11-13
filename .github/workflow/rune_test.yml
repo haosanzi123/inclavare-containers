@@ -8,6 +8,9 @@ on:
 jobs:
   # TODO: add rune circtl test on ubuntu image.
   rune_ubuntu:
+    - name: Does 'pull_request' has ${{ steps.checkLabel.outputs.checkedLabel }} label?
+      run: echo "${{ steps.checkLabel.outputs.hasLabel }}" 
+
     if: contains(github.event.pull_request.labels.*.name, 'start-testing')
     runs-on: self-hosted
     steps:
