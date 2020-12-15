@@ -26,4 +26,5 @@ uninstall:
 package:
 	for name in $(components); do \
 		$(MAKE) -C $$name package; \
+		echo "********************"; \
 	done
